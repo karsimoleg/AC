@@ -32,7 +32,7 @@ int naive_algorithm(string need,string haystack)
 	return ans;
 }
 
-
+//Алгоритм Хорспула
 int Horspool(string need, string haystack)
 {
 	int mas_for_need[NMAX_HORPSPOOL];
@@ -61,7 +61,7 @@ int Horspool(string need, string haystack)
 	return ans;
 }
 
-
+//Боєра-Мура алгоритм
 int Boyer_Moore(string need, string haystack)
 {
 	int n = (int)need.length();
@@ -102,7 +102,7 @@ int Boyer_Moore(string need, string haystack)
 	return ans;
 }
 
-
+//Кнута-Моріса-Прата алгоритм
 int prefics_function(string need, string haystack)
 {
 	string concat = need + "#" + haystack;
@@ -132,7 +132,7 @@ int prefics_function(string need, string haystack)
 	return ans;
 }
 
-
+//алгоритм Рабіна-Карпа
 int Rabin_Karp(string need, string haystack)
 {
 	vector<long long> pow_hash(max(need.length(), haystack.length()));
@@ -174,35 +174,35 @@ int main()
 	cout << "Input string where you want to search\n";
 	getline(cin, haystack);
 	int ans = -1;
-	
+	//
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	ans = naive_algorithm(need,haystack);
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	auto duration = duration_cast<microseconds>(t2 - t1).count();
 	cout << "Time of Naive algorithm work: " << duration / 1000.0 << "ms\n\n";
 
-	
+	//алгоритм хорспула
 	t1 = high_resolution_clock::now();
 	ans = Horspool(need, haystack);
 	t2 = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(t2 - t1).count();
 	cout << "Time of Horspool algorithm work: " << duration / 1000.0 << "ms\n\n";
 
-	
+	//алгоритм Баєра-Мура 
 	t1 = high_resolution_clock::now();
 	ans = Boyer_Moore(need, haystack);
 	t2 = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(t2 - t1).count();
 	cout << "Time of Boyer-Moore algorithm work: " << duration / 1000.0 << "ms\n\n";
 
-	
+	//КНП алгоритм
 	t1 = high_resolution_clock::now();
 	ans = prefics_function(need, haystack);
 	t2 = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(t2 - t1).count();
 	cout << "Time of Knuth-Morris-Pratt algorithm work: " << duration / 1000.0 << "ms\n\n";
 
-	
+	//Алгоритм РАбіна-Карпа 
 	t1 = high_resolution_clock::now();
 	ans = Rabin_Karp(need, haystack);
 	t2 = high_resolution_clock::now();
