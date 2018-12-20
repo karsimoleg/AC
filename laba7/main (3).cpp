@@ -10,7 +10,7 @@ string all_values[NMAX];
 string look_for[NMAX];
 long long pow_hash[NMAX][NMAX],hash_table[NMAX][NMAX];
 
-// рахує степені кожної комірки
+// СЂР°С…СѓС” СЃС‚РµРїРµРЅС– РєРѕР¶РЅРѕС— РєРѕРјС–СЂРєРё
 void create_pow_hash(int n)
 {
     for (int i = 0;i < n; ++i)
@@ -24,7 +24,7 @@ void create_pow_hash(int n)
     }
 }
 
-// хешування
+// С…РµС€СѓРІР°РЅРЅСЏ
 void create_hash_table_for_all(int n)
 {
     hash_table[0][0] = all_values[0][0]-'a'+1;
@@ -38,7 +38,7 @@ void create_hash_table_for_all(int n)
     }
 }
 
-// перевірка на входження
+// РїРµСЂРµРІС–СЂРєР° РЅР° РІС…РѕРґР¶РµРЅРЅСЏ
 vector<pair<int,int> > check(int n,int m,int count_hash)
 {
     vector<pair<int,int> > ans;
@@ -62,7 +62,7 @@ vector<pair<int,int> > check(int n,int m,int count_hash)
     return ans;
 }
 
-// тести
+// С‚РµСЃС‚Рё
 int main()
 {
     int n,m;
