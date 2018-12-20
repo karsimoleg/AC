@@ -183,19 +183,7 @@ int strassen(int(&A)[n][n], int(&B)[n][n], int(&C)[n][n], int half)
 }
 int multi(int(&MA)[n][n], int(&MB)[n][n], int(&MC)[n][n])
 {
-	/*
-	int p1 = MA[0][0]*(MB[0][1]-MB[1][1]);
-	int p2 = (MA[0][0]+MA[0][1])*MB[1][1];
-	int p3 = (MA[1][0]+MA[1][1])*MB[0][0];
-	int p4 = MA[1][1]*(MB[1][0]-MB[0][0]);
-	int p5 = (MA[0][0]+MA[1][1])*(MB[0][0]+MB[1][1]);
-	int p6 = (MA[0][1]-MA[1][1])*(MB[1][0]-MB[1][1]);
-	int p7 = (MA[1][0]-MA[0][0])*(MB[0][0]+MB[0][1]);
-	MC[0][0] = p5+p4-p2+p6;
-	MC[0][1] = p1+p2;
-	MC[1][0] = p3+p4;
-	MC[1][1] = p5+p1-p3+p7;
-	*/
+	
 
 	int p1 = (MA[0][0] + MA[1][1])*(MB[0][0] + MB[1][1]);
 	int p2 = (MA[1][0] + MA[1][1])*MB[0][0];
