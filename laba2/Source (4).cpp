@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void show_array(char *array, int n)//С„СѓРЅРєС†С–СЏ РІРёРІРѕРґСѓ
+void show_array(char *array, int n)//функція виводу 
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -18,14 +18,14 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	char gaika[] = { '@', '#', '$', '%', '^', '&' };
 	char bolts[] = { '$', '%', '&', '^', '@', '#' };
-	int n = sizeof(gaika) / sizeof(gaika[0]);// РїС–РґСЂР°С…РѕРІСѓС”РјРѕ Рє-С‚Рѕ РµР»РµРјРµРЅС‚С–РІ 
+	int n = sizeof(gaika) / sizeof(gaika[0]);// підраховуємо к-то елементів 
 
 
-	cout << "РџРѕС‡Р°С‚РєРѕРІi РЅРµ РІiРґСЃРѕСЂС‚РѕРІР°РЅi РµР»РµРјРµРЅС‚Рё " << endl;
-	show_array(bolt, n);//РІС–РґРѕР±СЂР°Р¶Р°С”РјРѕ РёР±РѕР»С‚Рё С‚Р° РіР°Р№РєРё
+	cout << "Початковi не вiдсортованi елементи " << endl;
+	show_array(bolt, n);//відображаємо иболти та гайки
 	show_array(gaika, n);
 	match(bolt, gaika, 0, n - 1);
-	cout << "РµР»РµРјРµРЅС‚Рё РїiСЃР»СЏ СЃРѕСЂС‚СѓРІР°РЅРЅСЏ " << endl;
+	cout << "елементи пiсля сортування " << endl;
 	show_array(bolt, n);
 	show_array(gaika, n);
 
@@ -34,9 +34,9 @@ int main()
 }
 
 
-int pod(char *array, int left, int right, char pivot) //РїРѕРґС–Р» РµР»РµРјРµРЅС‚С–РІ 
+int pod(char *array, int left, int right, char pivot) //поділ елементів 
 {
-	int i = left;//РїРѕС‡РёРЅР°С”РјРѕ СЃРѕСЂС‚СѓРІР°РЅРЅСЏ Р· Р»С–РІР° 
+	int i = left;//починаємо сортування з ліва 
 	for (int j = left; j < right; j++)
 	{
 		if (array[j] < pivot)
@@ -50,9 +50,8 @@ int pod(char *array, int left, int right, char pivot) //РїРѕРґС–Р» РµР»РµРјРµРЅС
 			j--;
 		}
 	}
-	swap(array[i], array[right]);//РјС–РЅСЏС”РјРѕ Р»С–РІРёР№ РµР»РµРјРµРЅС‚ РІ РїСЂР°РІРѕ
-	// РїРѕРІРµСЂС‚Р°С” С–РЅРґРµРєСЃ СЂРѕР·РґС–Р»Сѓ РјР°СЃРёРІСѓ 
-	
+	swap(array[i], array[right]);//міняємо лівий елемент в право
+	// повертає індекс розділу масиву 
 	
 	return i;
 }
@@ -61,14 +60,14 @@ void match(char * bolt, char * gaika, int left, int right)
 {
 	if (left < right)
 	{
-		// РІРёР±РµСЂaС”РјРѕ РѕСЃС‚Р°РЅРЅС–Р№ СЃРёРјРІРѕР» РјР°СЃРёРІСѓ Р±РѕР»С‚С–РІ РґР»СЏ СЂРѕР·РґС–Р»Сѓ РіР°Р№РѕРє
+		// виберaємо останній символ масиву болтів для розділу гайок
 		int pivot = pod(gaika, left, right, bolt[right]);
 
-		// СЂРѕР·РґС–Р»РёРјРѕ Р±РѕР»С‚Рё
+		// тепер використовуючи розділ гайок розділимо болти
 		pod(bolt, left, right, gaika[pivot]);
 
-		//СЂРµРєСѓСЂСЃРёРІРЅРѕ СЂРѕР·РґС–Р»СЏС”РјРѕ РјР°СЃРёРІРё РЅР° РјРµРЅС€С– РїС–РґРјР°СЃРёРІРё
-		match(gaika, bolt, left, pivot - 1)
+		//рекурсивно розділяємо масиви на менші підмасиви
+		match(gaika, bolt, left, pivot - 1)//робимо це для пришвидшення алгориму 
 		match(gaika, bolt, left, pivot - 1)
 		matcha(gaika, bolt, pivot + 1, right);
 	}
